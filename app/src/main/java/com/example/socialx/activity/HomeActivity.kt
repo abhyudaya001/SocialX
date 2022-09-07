@@ -18,16 +18,17 @@ import kotlin.collections.ArrayList
 
 class  HomeActivity : AppCompatActivity() {
     private lateinit var adapter:NewsAdapter
-    private lateinit var newsList:ArrayList<Articles>
-    private lateinit var searchList:ArrayList<Articles>
+    private  var newsList:ArrayList<Articles> =ArrayList()
+    private  var searchList:ArrayList<Articles> =ArrayList()
     var binding:ActivityHomeBinding?=null
+    var flag:Boolean=true
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        newsList= ArrayList()
-        searchList= ArrayList()
+//        newsList= ArrayList()
+//        searchList= ArrayList()
         binding?.searchText?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
@@ -40,6 +41,7 @@ class  HomeActivity : AppCompatActivity() {
 
         })
         getNews()
+
     }
 
     private fun getNews() {
@@ -66,11 +68,11 @@ class  HomeActivity : AppCompatActivity() {
     private fun filter(text:String?){
         searchList.clear()
         for(article:Articles in newsList){
-            if(article.title!!.lowercase().contains(text!!.lowercase())){
-                searchList?.add(article)
+            if(article.title.lowercase().contains(text!!.lowercase())){
+                searchList.add(article)
             }
         }
-        if(searchList!!.isEmpty()){
+        if(searchList.isEmpty()){
             Toast.makeText(this,"Data not found",Toast.LENGTH_SHORT).show()
         }else{
             adapter.updateNews(searchList)

@@ -38,9 +38,9 @@ class NewsAdapter(var context: Context,var articles: ArrayList<Articles>):Recycl
         return articles.size
     }
     @SuppressLint("NotifyDataSetChanged")
-    fun updateNews(updatednews:ArrayList<Articles>){
+    fun updateNews(updatedNews:ArrayList<Articles>){
         articles.clear()
-        articles.addAll(updatednews)
+        articles.addAll(updatedNews)
         notifyDataSetChanged()
     }
 
