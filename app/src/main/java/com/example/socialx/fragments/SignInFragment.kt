@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.socialx.HomeActivity
-import com.example.socialx.R
+import com.example.socialx.activity.HomeActivity
 import com.example.socialx.databinding.FragmentSignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -43,7 +42,7 @@ class SignInFragment : Fragment() {
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task->
                     binding?.progressBar?.visibility=View.INVISIBLE
                     if(task.isSuccessful){
-                        var intent=Intent(context,HomeActivity::class.java)
+                        var intent=Intent(context, HomeActivity::class.java)
                         startActivity(intent)
                     }else{
                         Toast.makeText(context,"Invalid Email or Password", Toast.LENGTH_LONG).show()
@@ -51,6 +50,15 @@ class SignInFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser!=null){
+            var intent=Intent(context, HomeActivity::class.java)
+            startActivity(intent)
+        }
+        super.onStart()
     }
 
 }

@@ -1,23 +1,22 @@
 package com.example.socialx.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.socialx.R
 import com.example.socialx.models.Articles
 
-class NewsAdapter(val context: Context,val articles: List<Articles>):RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
+class NewsAdapter(var context: Context,var articles: ArrayList<Articles>):RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
     class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var author=itemView.findViewById<TextView>(R.id.news_source)
-        val discription=itemView.findViewById<TextView>(R.id.news_description)
-        val image=itemView.findViewById<ImageView>(R.id.news_image)
-        val timeOfPublished=itemView.findViewById<TextView>(R.id.news_published)
+        var discription=itemView.findViewById<TextView>(R.id.news_description)
+        var image=itemView.findViewById<ImageView>(R.id.news_image)
+        var timeOfPublished=itemView.findViewById<TextView>(R.id.news_published)
         val title=itemView.findViewById<TextView>(R.id.news_title)
     }
 
@@ -38,4 +37,12 @@ class NewsAdapter(val context: Context,val articles: List<Articles>):RecyclerVie
     override fun getItemCount(): Int {
         return articles.size
     }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateNews(updatednews:ArrayList<Articles>){
+        articles.clear()
+        articles.addAll(updatednews)
+        notifyDataSetChanged()
+    }
+
+
 }

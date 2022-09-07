@@ -1,3 +1,3 @@
 package com.example.socialx.models
 
-data class News (val totalResults:Int, val articles:List<Articles>)
+data class News (var totalResults:Int, var articles:ArrayList<Articles>)
