@@ -7,12 +7,13 @@
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.1" />
+        <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2165" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/drawable/tab_indicator.xml" value="0.1" />
-        <entry key="..\:/fp/socialX/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/fp/socialX/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/fp/socialX/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/fp/socialX/app/src/main/res/layout/cardlayout.xml" value="0.26580226904376014" />
         <entry key="..\:/fp/socialX/app/src/main/res/layout/fragment_sign_in.xml" value="0.2" />

@@ -3,12 +3,14 @@ package com.example.socialx.fragments
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.socialx.R
 import com.example.socialx.activity.HomeActivity
 import com.example.socialx.activity.MainActivity
@@ -20,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+
 
 class SignInFragment : Fragment() {
     var binding:FragmentSignInBinding?=null
@@ -38,7 +41,7 @@ class SignInFragment : Fragment() {
         binding= FragmentSignInBinding.inflate(inflater,container,false)
         auth = FirebaseAuth.getInstance()
         val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(com.example.socialx.R.string.default_web_client_id))
             .requestId()
             .build()
         googleSignInClient= GoogleSignIn.getClient(requireActivity(),googleSignInOptions)
@@ -47,6 +50,9 @@ class SignInFragment : Fragment() {
         }
         binding?.signInBtn?.setOnClickListener {
                 authentication()
+        }
+        binding?.signUpText?.setOnClickListener{
+            binding?.signUpText?.setOnClickListener { (activity as MainActivity).selectTab(1) }
         }
         return binding?.root
     }
@@ -108,13 +114,13 @@ class SignInFragment : Fragment() {
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        if(auth.currentUser!=null){
-//            var intent=Intent(context, HomeActivity::class.java)
-//            startActivity(intent)
-//        }
-//        super.onStart()
-//    }
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser!=null){
+            var intent=Intent(context, HomeActivity::class.java)
+            startActivity(intent)
+        }
+        super.onStart()
+    }
 
 }

@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Toast
+import com.example.socialx.activity.MainActivity
 import com.example.socialx.databinding.FragmentSignUpBinding
 import com.example.socialx.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +31,7 @@ class SignUpFragment : Fragment() {
         binding?.signUpBtn?.setOnClickListener{
             signup()
         }
+        binding?.signInText?.setOnClickListener{(activity as MainActivity).selectTab(0)}
         return binding?.root
     }
 
@@ -38,6 +41,7 @@ class SignUpFragment : Fragment() {
         val email:String?=binding?.editEmailSignUp?.text?.toString()
         val password:String?=binding?.editPassSignUp?.text?.toString()
         val phoneNumber:String?=binding?.editNumberSignUp?.text.toString()
+        val checkBox:CheckBox?=binding?.checkBox
         if(name==""){
             binding?.progressBar?.visibility=View.INVISIBLE
             Toast.makeText(context,"Please enter a username", Toast.LENGTH_LONG).show()
@@ -50,6 +54,9 @@ class SignUpFragment : Fragment() {
         }else if(phoneNumber==""){
             binding?.progressBar?.visibility=View.INVISIBLE
             Toast.makeText(context,"Please enter a phone number", Toast.LENGTH_LONG).show()
+        }else if(!(checkBox!!.isChecked)){
+            binding?.progressBar?.visibility=View.INVISIBLE
+            Toast.makeText(context,"Please accept Our terms and condition", Toast.LENGTH_LONG).show()
         }else{
             if (password != null&&email!=null) {
                 auth.createUserWithEmailAndPassword(email,password)

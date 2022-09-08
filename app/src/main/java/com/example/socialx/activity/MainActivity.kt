@@ -30,26 +30,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }.attach()
-//        binding?.tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                if (tab != null) {
-//                    binding?.viewPager2!!.currentItem=tab.position
-//                }
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//        binding?.viewPager2?.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
-//            override fun onPageSelected(position: Int) {
-//                binding?.tabLayout?.selectTab(binding?.tabLayout!!.getTabAt(position))
-//            }
-//        })
+    }
+
+    fun selectTab(pos: Int) {
+        binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(pos))
     }
 }

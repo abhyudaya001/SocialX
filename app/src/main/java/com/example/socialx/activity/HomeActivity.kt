@@ -1,9 +1,11 @@
 package com.example.socialx.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,35 +14,42 @@ import com.example.socialx.adapters.NewsAdapter
 import com.example.socialx.databinding.ActivityHomeBinding
 import com.example.socialx.models.Articles
 import com.example.socialx.models.News
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Response
+import java.util.Locale.filter
 import kotlin.collections.ArrayList
 
 class  HomeActivity : AppCompatActivity() {
     private lateinit var adapter:NewsAdapter
     private  var newsList:ArrayList<Articles> =ArrayList()
-    private  var searchList:ArrayList<Articles> =ArrayList()
     var binding:ActivityHomeBinding?=null
-    var flag:Boolean=true
-    @SuppressLint("NotifyDataSetChanged")
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-//        newsList= ArrayList()
-//        searchList= ArrayList()
+        getSupportActionBar()?.hide();
+        auth=FirebaseAuth.getInstance()
+        getNews()
+        binding?.logoutButton?.setOnClickListener{
+            auth.signOut()
+            var intent= Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         binding?.searchText?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                filter(p0)
+            override fun onQueryTextChange(p1: String?): Boolean {
+                adapter.filter.filter(p1)
                 return true
             }
 
         })
-        getNews()
+
 
     }
 
@@ -55,7 +64,6 @@ class  HomeActivity : AppCompatActivity() {
                    adapter= NewsAdapter(this@HomeActivity, news.articles)
                    binding?.newsList!!.adapter=adapter
                    binding?.newsList!!.layoutManager=LinearLayoutManager(this@HomeActivity)
-                   adapter.notifyDataSetChanged()
                }
             }
 
@@ -64,18 +72,5 @@ class  HomeActivity : AppCompatActivity() {
             }
 
         })
-    }
-    private fun filter(text:String?){
-        searchList.clear()
-        for(article:Articles in newsList){
-            if(article.title.lowercase().contains(text!!.lowercase())){
-                searchList.add(article)
-            }
-        }
-        if(searchList.isEmpty()){
-            Toast.makeText(this,"Data not found",Toast.LENGTH_SHORT).show()
-        }else{
-            adapter.updateNews(searchList)
-        }
     }
 }
