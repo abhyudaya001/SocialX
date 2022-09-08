@@ -1,11 +1,12 @@
 # SocialX
 
-<b>The libraries used:</b>
+<pre><b>The libraries used:</b>
 
 1.ViewPager2 for UI<br>
 2.Retrofir for getting data from API<br>
 3.Firebase for Login Signup from custom email and google.<br>
 4.Glide for getting image from url<br><br>
+</pre>
 
 <pre><b>Project Contain 4 Package</b><br>
 1.Activity(Contain Two Activities) <br>
