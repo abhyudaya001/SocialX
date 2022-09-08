@@ -6,6 +6,7 @@
 2.Retrofir for getting data from API<br>
 3.Firebase for Login Signup from custom email and google.<br>
 4.Glide for getting image from url<br><br>
+5.CountryCodePicker to search and select country phone code for the telephone number.
 </pre>
 
 <pre><b>Project Contain 4 Package</b><br>
