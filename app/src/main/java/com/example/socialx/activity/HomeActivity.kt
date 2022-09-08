@@ -34,6 +34,7 @@ class  HomeActivity : AppCompatActivity() {
         getNews()
         binding?.logoutButton?.setOnClickListener{
             auth.signOut()
+            Toast.makeText(this,"Logout Successful",Toast.LENGTH_SHORT).show()
             var intent= Intent(this,MainActivity::class.java)
             startActivity(intent)
             finish()
